@@ -1,0 +1,219 @@
+{
+  "online": {
+    "cells": {
+      "A": "CELL0001",
+      "B": "CELL0002"
+    },
+    "rename": {
+      "label_at_1140": "A",
+      "label_at_1160": "A1",
+      "residual_A_unaffected": [
+        "blue"
+      ]
+    },
+    "handover_unwashed": {
+      "at": 1300,
+      "cells": {
+        "CELL0001": {
+          "cell_id": "CELL0001",
+          "trailer": "R-COLOR",
+          "label": "A1",
+          "liner_id": "CELL0001/L0",
+          "residual": [
+            {
+              "color": "blue",
+              "liner_id": "CELL0001/L0",
+              "contact_ids": [
+                1
+              ],
+              "sources": [
+                {
+                  "contact_id": 1,
+                  "ts": 1200,
+                  "liner_id": "CELL0001/L0",
+                  "trip_id": "TRIP0001",
+                  "source": "LOAD"
+                }
+              ],
+              "since": 1200,
+              "first_contact_id": 1
+            }
+          ],
+          "exists": true
+        },
+        "CELL0002": {
+          "cell_id": "CELL0002",
+          "trailer": "R-COLOR",
+          "label": "B",
+          "liner_id": "CELL0002/L0",
+          "residual": [],
+          "exists": true
+        }
+      }
+    },
+    "per_order_candidates": {
+      "W": [
+        "CELL0002"
+      ],
+      "N": [
+        "CELL0002"
+      ]
+    },
+    "batch_before_cleaning": {
+      "feasible": false,
+      "impediments": {
+        "hall_orders": [
+          "N",
+          "W"
+        ],
+        "hall_cells": [
+          "CELL0002"
+        ],
+        "detail": [
+          {
+            "order_id": "N",
+            "cause": "CONTENTION",
+            "cells": [
+              "CELL0002"
+            ],
+            "explain": "eligible cells are also needed by other orders in the same handover point"
+          },
+          {
+            "order_id": "W",
+            "cause": "CONTENTION",
+            "cells": [
+              "CELL0002"
+            ],
+            "explain": "eligible cells are also needed by other orders in the same handover point"
+          }
+        ],
+        "note": "|orders|=2 > |reachable cells|=1; each order needs a distinct cell at the same handover point"
+      },
+      "note": "每单各自都有候选，但两单都只能落在 B，整批无解 (Hall 阻碍)"
+    },
+    "cleaning_slip": {
+      "clean_id": "CLN-CELL0001-1250",
+      "cell_id": "CELL0001",
+      "liner_id": "CELL0001/L0",
+      "trailer": "R-COLOR",
+      "label_seen": null,
+      "done_ts": 1250,
+      "trip_id": null,
+      "steps": [
+        {
+          "clears": [],
+          "step": "干刷"
+        },
+        {
+          "clears": [
+            "blue"
+          ],
+          "step": "蓝专用溶剂冲洗"
+        }
+      ],
+      "covered": [
+        "blue"
+      ]
+    },
+    "handover_washed": {
+      "at": 1300,
+      "cells": {
+        "CELL0001": {
+          "cell_id": "CELL0001",
+          "trailer": "R-COLOR",
+          "label": "A1",
+          "liner_id": "CELL0001/L0",
+          "residual": [],
+          "exists": true
+        },
+        "CELL0002": {
+          "cell_id": "CELL0002",
+          "trailer": "R-COLOR",
+          "label": "B",
+          "liner_id": "CELL0002/L0",
+          "residual": [],
+          "exists": true
+        }
+      }
+    },
+    "batch_after_cleaning": {
+      "feasible": true,
+      "matching": {
+        "N": "CELL0002",
+        "W": "CELL0001"
+      }
+    },
+    "arrangements": {
+      "preview_ok": {
+        "N": "CELL0002",
+        "W": "CELL0001"
+      },
+      "preview_alt": {
+        "N": "CELL0002"
+      },
+      "accepted": {
+        "N": "CELL0002",
+        "W": "CELL0001"
+      },
+      "alt_accept": "blocked: OrderBusy: order N already fulfilled at point 1300",
+      "alt_status": "DRAFT"
+    },
+    "cross_trailer_evidence": {
+      "clean_on_target": "rejected: cleaning receipt trailer 'R-OTHER' does not match cell CELL0001 on trailer 'R-COLOR'",
+      "target_residual": [
+        "blue"
+      ],
+      "note": "同格号落在另一挂车的舱格上，不构成对本舱格的清洗证据"
+    },
+    "allow_blue_variant": {
+      "point": 100,
+      "feasible": true,
+      "matching": {
+        "N": "CELL0002",
+        "W": "CELL0001"
+      },
+      "unmatched": [],
+      "impediments": {},
+      "candidates": {
+        "W": {
+          "eligible": [
+            "CELL0001",
+            "CELL0002"
+          ],
+          "intend_color": "white",
+          "customer_version": "white"
+        },
+        "N": {
+          "eligible": [
+            "CELL0002"
+          ],
+          "intend_color": "normal",
+          "customer_version": "normal"
+        }
+      }
+    },
+    "late_cleaning": {
+      "feasible_before_slip": false,
+      "residual_at_40": [
+        "blue"
+      ],
+      "feasible_after_slip": true,
+      "note": "完成时间 50 早于交班点 100，迟到登记后覆盖生效；40 处仍见蓝色"
+    },
+    "reconcile": {
+      "yard": [],
+      "orders": [],
+      "frozen_recheck": true
+    }
+  },
+  "offline": {
+    "accepted_mapping": {
+      "N": "CELL0002",
+      "W": "CELL0001"
+    },
+    "yard_reconcile_after_reopen": [],
+    "order_reconcile_after_reopen": [],
+    "frozen_recheck": true,
+    "offline_recheck_without_yard": true
+  }
+}
